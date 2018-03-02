@@ -1,4 +1,31 @@
+// basic: function that returns object
+
+function vehicleFactory(make, wheels, cc) {
+  
+  // private variable..
+  var cc = cc;
+
+  return {
+    make: make,
+    wheels: wheels,
+    getcc: function() {
+     return cc; 
+    },
+    setcc: function(newcc) {
+      cc = newcc;
+    },
+  }
+}
+
+var car = vehicleFactory('ferrari', 4, 2000);
+console.log(car.getcc());
+car.setcc(100);
+console.log(car.cc); // undefined
+console.log(car.getcc());
+
 // silly exmaple
+
+
 function createPerson(type, age, name, powers) {
   let base = {
     age,
@@ -33,3 +60,5 @@ jon.sayName();
 superJon.sayName();
 jon.sayPowers();
 superJon.sayPowers();
+
+
