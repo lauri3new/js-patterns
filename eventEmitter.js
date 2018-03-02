@@ -9,11 +9,11 @@ function es5EventEmitter() {
 }
 
 es5EventEmitter.prototype.addListener = function(eventName, callback) {
-  if (!this.listeners.eventName) {
+  if (!this.listeners[eventName]) {
     this.listeners[eventName] = [];
   }
-  if (this.listeners.eventName.findIndex(callback) === -1) {
-    this.listeners.eventName.push(callback);
+  if (this.listeners[eventName].findIndex(callback) === -1) {
+    this.listeners[eventName].push(callback);
   }
   return this;
 }
@@ -28,6 +28,17 @@ es5EventEmitter.prototype.emit = function(eventName) {
     callback();
   });
 }
+
+var ee = new es5EventEmitter();
+
+function listener() {
+  console.log('someone said hello');
+}
+
+ee.addListener('HELLO_LISTENERS',listener);
+ee.emit('HELLO_LISTENERS'); // 'someone said hello'
+ee.removeListener('HELLO_LISTENERS',listener);
+ee.emit('HELLO_LISTENERS'); // nothing
 
 // ES6
 class EventEmitter {
